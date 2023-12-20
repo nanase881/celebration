@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CountDown : MonoBehaviour
 {
@@ -22,8 +23,8 @@ public class CountDown : MonoBehaviour
         }
         if(countDownTime <= 0)
         {
-            Debug.Log("Finish!");
-            
+            //Debug.Log("Finish!");
+            SceneManager.LoadScene("Result");
         }
 
     }
