@@ -7,6 +7,7 @@ public class Items : MonoBehaviour
     static int count1 = 0;
     static int count2 = 0;
     static int count4 = 0;
+    [SerializeField] GameObject playSE;
     
 
     private void OnTriggerEnter(Collider other)
@@ -14,7 +15,10 @@ public class Items : MonoBehaviour
         
         if (other.CompareTag("Player"))
         {
+            Instantiate(playSE, transform.position, transform.rotation);
+
             Destroy(gameObject);
+            
             if (this.gameObject.CompareTag("box1"))
             {
                 count1++;
