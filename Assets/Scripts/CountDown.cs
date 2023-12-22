@@ -8,7 +8,11 @@ public class CountDown : MonoBehaviour
 {
     [SerializeField] float countDownTime = 30f;
     [SerializeField] TextMeshProUGUI countDownText;
-
+    [SerializeField] TextMeshProUGUI finishText;
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject playSE;
+    [SerializeField] GameObject BGM;
+    bool playWhistle = false;
     // Update is called once per frame
     void Update()
     {
@@ -21,9 +25,23 @@ public class CountDown : MonoBehaviour
         }
         if(countDownTime <= 0)
         {
+            if (!playWhistle)
+            {
+                Instantiate(playSE, transform.position, transform.rotation);
+                playWhistle = true;
+            }
             //Debug.Log("Finish!");
-            SceneManager.LoadScene("Result");
+            BGM.SetActive(false);
+            countDownText = null;
+            finishText.text = "Finish!";
+            player.SetActive(false);
+            Invoke("ChangeScene", 3f);
         }
 
+    }
+
+    void ChangeScene()
+    {
+        SceneManager.LoadScene("Result");
     }
 }
