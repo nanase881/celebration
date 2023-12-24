@@ -32,7 +32,7 @@ public class CountDown : MonoBehaviour
             }
             //Debug.Log("Finish!");
             BGM.SetActive(false);
-            countDownText = null;
+            countDownText.text = "";
             finishText.text = "Finish!";
             player.SetActive(false);
             Invoke("ChangeScene", 3f);
