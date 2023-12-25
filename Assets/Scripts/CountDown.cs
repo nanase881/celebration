@@ -12,7 +12,32 @@ public class CountDown : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] GameObject playSE;
     [SerializeField] GameObject BGM;
+    [SerializeField] GameObject areYouReady;
+    [SerializeField] GameObject go;
     bool playWhistle = false;
+    AudioSource bgm;
+    AudioSource areYouReadyVoice;
+    AudioSource goVoice;
+    Rigidbody playerRb;
+    private void Awake()
+    {
+        playerRb = player.GetComponent<Rigidbody>();
+        playerRb.constraints = RigidbodyConstraints.FreezeAll;
+        areYouReadyVoice = areYouReady.GetComponent<AudioSource>();
+        goVoice = go.GetComponent<AudioSource>();
+        //areYouReady.SetActive(true);
+        areYouReadyVoice.Play();
+        goVoice.Play();
+        Invoke("PlayBGM", 5f);
+        
+    }
+
+    private void PlayBGM()
+    {
+        bgm = BGM.GetComponent<AudioSource>();
+        bgm.Play();
+        playerRb.constraints = RigidbodyConstraints.None;
+    }
     // Update is called once per frame
     void Update()
     {
